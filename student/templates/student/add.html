@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'student:add_save' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="name" id="">
+    <input type="text" name="student_code" id="">
+    <select name="sex" id="">
+        <option value="男">男</option>
+        <option value="女">女</option>
+    </select>
+    <input type="text" name="marjo" id="">
+    <input type="text" name="grade" id="">
+    <input type="submit" value="登录">
+</form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'student:edit_save' %}" method="post">
+      {% csrf_token %}
+    <input type="text" name="name" id="" value="{{ students.name }}">
+    <input type="text" name="student_code" id="" value="{{ students.student_code }}">
+    <select name="sex" id="">
+        <option value="男">男</option>
+        <option value="女">女</option>
+    </select>
+    <input type="text" name="marjo" id="" value="{{ students.marjo }}">
+    <input type="text" name="grade" id="" value="{{ students.grade }}">
+    <input type="submit" value="修改">
+     <input type="hidden" name="students_id" id="" value="{{ students.id }}">
+</form>
+</body>
+</html>

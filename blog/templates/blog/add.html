@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建新博客</title>
+    {% load static %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script>
+        $(".django-ckeditor-widget").removeAttr('style');
+    </script>
+</head>
+<body>
+    <form action="{% url 'blog:add_save' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="title" id=""><hr>
+{#        <textarea name="content" id="" cols="30" rows="10"></textarea><hr>#}
+        <div>
+            <textarea name="content" id="" cols="30" rows="10"></textarea>
+            <script type="text/javascript">CKEDITOR.replace('content')</script>
+        </div>
+        <input type="text" name="key_words" id="">每个关键之间用逗号分隔<hr>
+        <input type="submit" value="发布">
+    </form>
+</body>
+</html>

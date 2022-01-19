@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'student:add' %}">添加</a>
+   {% if students_list %}
+        <ul>
+          {% for students in students_list %}
+
+              <li>
+                  <span>{{ students.student_code }}</span>
+                  <span>{{ students.name }}</span>
+                  <span>{{ students.grade }}</span>
+                  <span>{{ students.marjo }}</span>
+                  <a href="{% url 'student:edit' students.id %}">修改</a>
+                  <a href="{% url 'student:delet_students' students.id %}">删除</a>
+              </li>
+           {% endfor %}
+        </ul>
+{% endif %}
+</body>
+</html>

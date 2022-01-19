@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>blog列表</title>
+</head>
+<style>
+   .blog_list{
+     width: 70%;
+       float: left;
+   }
+    .account_list{
+        width: 20%;
+        float: right;
+    }
+</style>
+<body>
+
+<h1>博客</h1>
+
+<div>
+    {% if reqeust.session.account %}
+    您好！{{ reqeust.session.account.user_name }}
+    <a href="{% url 'blog:add' %}">新建日志</a>
+    <a href="{% url 'blog:logout' %}">退出</a>
+{% else %}
+    <a href="{% url 'blog:login' %}">登录</a>
+    <a href="{% url 'blog:reg' %}">注册</a>
+{% endif %}
+</div>
+
+{% if blog_list %}
+    <ul class="blog_list">
+        {% for blog in blog_list %}
+        <li>
+           {#     哪个用户发布的博客      #}
+            <a href="{% url 'blog:account' blog.account.id %}">{{ blog.account.user_name }}</a>
+            <a href="{% url 'blog:details' blog.id  %}">{{ blog.title }}</a>
+            <span>{{ blog.pub_date }}</span>
+        </li>
+         {% endfor %}
+    </ul>
+{% endif %}
+{% if account_list %}
+        <ul class="account_list">
+         {% for account in account_list %}
+       <li>
+           <a href="{% url 'blog:account' account.id %}">{{ account.user_name }}</a>
+       </li>
+         {% endfor %}
+        </ul>
+
+{% endif %}
+</body>
+</html>

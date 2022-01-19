@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ blog.title }}</title>
+     {% load static %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script>
+        $(".django-ckeditor-widget").removeAttr('style');
+    </script>
+</head>
+<body>
+   <h1>{{ blog.title }}</h1>
+   <h3>{{ blog.pub_date }}</h3>
+   <p>{{ blog.content|safe }}</p>
+   
+   <hr>
+   <div>
+      {% for comment in blog.comment_set.all %}
+          <div style="background: azure; border-bottom: 1px dashed #000000">
+              <div style="width: 500px">
+                  <p style="width: 300px;float: left;">{{ comment.account.user_name }}</p>
+                  <p style="width: 200px;float: right;text-align: right">{{ comment.pub_date }}</p>
+              </div>
+          </div>
+          <div style="display: flex;width: 500px;height: 40px">
+          <p style="display: flex; width: 400px">
+              {{ comment.content }}
+          </p>
+          <p style="display: flex;width: 100px">
+              <a href="{% url 'blog:approval' blog_id=blog.id comment_id=comment.id opra=1 %}" style="margin-right: 10px;">赞同{{ comment.approval }}</a>
+              <a href="{% url 'blog:approval' blog_id=blog.id comment_id=comment.id opra=2 %}">反对{{ comment.oppose }}</a>
+          </p>
+
+          </div>
+
+       {% endfor %}
+   </div>
+
+   <div>
+       发表评论
+       <form action="{% url 'blog:comment_add' %}" method="post">
+           {% csrf_token %}
+           <input type="hidden" name="blog_id" value="{{ blog.id }}">
+           <textarea name="comment" id="" cols="30" rows="10"></textarea>
+           <input type="submit" value="发表">
+       </form>
+   </div>
+   
+   <a href="{% url 'blog:edit' blog.id %}">修改</a>
+   <a href="/blog/">返回</a>
+</body>
+</html>

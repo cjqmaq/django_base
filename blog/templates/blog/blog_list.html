@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   {% if blog_list %}
+       {% for blog in blog_list %}
+           <ul>
+             <li>
+                 <a href="{% url 'blog:details' blog.id %}">{{ blog.title }}</a>
+                 <span>{{ blog.pub_date }}</span>
+             </li>
+           </ul>
+       {% endfor %}
+{% endif %}
+</body>
+</html>

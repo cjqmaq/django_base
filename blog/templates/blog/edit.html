@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改博客</title>
+</head>
+<body>
+  <form action="{% url 'blog:edit_save' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="title" id="" value="{{ blog.title }}"><hr>
+        <textarea name="content" id="" cols="30" rows="10">{{ blog.content }}</textarea><hr>
+        <input type="hidden" name="blog_id" id="" value="{{ blog.id }}">
+        <input type="submit" value="发布">
+    </form>
+</body>
+</html>

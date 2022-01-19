@@ -1,0 +1,6 @@
+1.配置setting.py
+2.添加应用
+3.设计model，并把model设计同步到数据库
+4.设计views中的方法
+5.设计templates中的html页面
+6.配置APP中urls,并把它引入到项目的urls中

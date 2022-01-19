@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div{
+            color: red;
+            background: antiquewhite;
+            font-size: 16px;
+            width: 200px;
+            padding: 10px 10px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <form action="{% url 'blog:login_check' %}" method="post">
+     {% csrf_token %}
+       用户名： <input type="text" name="user_name" id="">
+        密码：<input type="text" name="pass_word" id="">
+        <input type="submit" value="登录">
+    </form>
+{% if msg %}
+<div class="div">{{ msg }}</div>
+{% endif %}
+</body>
+</html>
